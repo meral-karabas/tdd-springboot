@@ -34,8 +34,8 @@ public class CacheTest {
         when(repository.findById(anyLong())).thenReturn(Optional.of(new Bank(1L,"10x")));
 
         // Act
-        Bank bank = service.getBankById(1L).get();
-        Bank bank2 = service.getBankById(1L).get();
+        Bank bank = service.getBankById(1L);
+        Bank bank2 = service.getBankById(1L);
 
         // Assert
         verify(repository, times(1)).findById(any());

@@ -15,7 +15,7 @@ public class BankController {
     BankService service;
 
     @GetMapping("/banks/{id}")
-    private Bank getBank(@PathVariable("id") Long id) throws BankNotFoundException {
-        return service.getBankById(id).orElseThrow(BankNotFoundException::new);
+    private Bank getBank(@PathVariable("id") Long id){
+        return service.getBankById(id);
     }
 }

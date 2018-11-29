@@ -1,5 +1,6 @@
 package com.ts.tdd11.service;
 
+import com.ts.tdd11.exception.BankNotFoundException;
 import com.ts.tdd11.model.Bank;
 import com.ts.tdd11.repository.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class BankService {
     }
 
     @Cacheable("bankCache")
-    public Optional<Bank> getBankById(Long id) {
-        return repository.findById(id);
+    public Bank getBankById(Long id) {
+        return repository.findById(id).orElseThrow(BankNotFoundException::new);
     }
 }
