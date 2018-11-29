@@ -1,6 +1,7 @@
 package com.ts.tdd11.service;
 
 
+import com.ts.tdd11.exception.BankNotFoundException;
 import com.ts.tdd11.model.Bank;
 import com.ts.tdd11.repository.BankRepository;
 import org.junit.Before;
@@ -12,11 +13,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Optional;
 
+import static java.util.Optional.empty;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -40,7 +39,7 @@ public class BankServiceTest {
 
 
         // Act
-        Bank bank = service.getBankById(1L).get();
+        Bank bank = service.getBankById(1L);
 
         // Assert
         assertThat(bank).isNotNull();
@@ -48,6 +47,15 @@ public class BankServiceTest {
         assertThat(bank.getName()).isEqualTo("10x");
     }
 
+
+    @Test(expected= BankNotFoundException.class)
+    public void  whenBankNotFound_thenThrowError(){
+        // Arrange
+        when(repository.findById(2L)).thenReturn(empty());
+
+        // Act
+        Bank bank = service.getBankById(2L);
+    }
 
 
 
