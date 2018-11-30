@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BankController {
 
     @Autowired
-    BankService service;
+    private BankService service;
 
     @GetMapping("/banks/{id}")
     private Bank getBank(@PathVariable("id") Long id){

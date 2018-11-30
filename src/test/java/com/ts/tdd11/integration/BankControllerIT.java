@@ -20,12 +20,12 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class BankControllerIT {
     @Autowired
-    TestRestTemplate    template;
+    private TestRestTemplate    template;
 
     @Autowired
-    BankRepository repository;
+    private BankRepository repository;
 
-    Bank bank;
+    private Bank bank;
 
     @Before
     public void setup(){
