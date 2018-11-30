@@ -13,13 +13,13 @@ import java.util.Optional;
 public class BankService {
 
     @Autowired
-    BankRepository  repository;
+    private BankRepository  repository;
 
     public BankService(BankRepository repository) {
         this.repository = repository;
     }
 
-    @Cacheable("bankCache")
+    @Cacheable(value = "bankCache")
     public Bank getBankById(Long id) {
         return repository.findById(id).orElseThrow(BankNotFoundException::new);
     }
